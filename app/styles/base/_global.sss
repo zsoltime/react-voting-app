@@ -1,0 +1,39 @@
+*
+  &,
+  &:before,
+  &:after
+    box-sizing: inherit
+
+html
+  box-sizing: border-box
+  font-size: 100%
+  min-height: 100%
+
+body
+  background-color: $background-color
+  color: $text-color
+  font-family: $font-stack-sans
+  font-size: $font-size
+  font-weight: $font-weight
+  line-height: $line-height
+  margin: 0
+  padding: 0
+
+button,
+input,
+select,
+textarea
+  font-family: inherit
+  font-size: inherit
+  font-weight: inherit
+  line-height: inherit
+
+[role='button']
+  cursor: pointer
+
+img
+  height: auto
+  width: 100%
+
+a
+  color: $link-color
