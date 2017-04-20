@@ -1,0 +1,75 @@
+{
+  "name": "react-voting-app",
+  "version": "0.1.0",
+  "description": "React voting app for Free Code Camp",
+  "main": "server.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "npm run build && node server.js",
+    "test": "NODE_ENV=test karma start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zsoltime/react-voting-app.git"
+  },
+  "keywords": [
+    "fcc",
+    "vote"
+  ],
+  "author": "Zsolt Meszaros",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zsoltime/react-voting-app/issues"
+  },
+  "homepage": "https://github.com/zsoltime/react-voting-app#readme",
+  "devDependencies": {
+    "enzyme": "^2.8.2",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-loader": "^1.7.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3",
+    "expect": "^1.20.2",
+    "karma": "^1.6.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-mocha": "^1.3.0",
+    "karma-mocha-reporter": "^2.2.3",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^2.0.3",
+    "mocha": "^3.2.0"
+  },
+  "dependencies": {
+    "autoprefixer": "^6.7.7",
+    "babel-core": "^6.24.1",
+    "babel-loader": "^6.4.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "css-loader": "^0.28.0",
+    "express": "^4.15.2",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "firebase": "^3.8.0",
+    "html-webpack-plugin": "^2.28.0",
+    "node-env-file": "^0.1.8",
+    "normalize.css": "^6.0.0",
+    "postcss-easy-import": "^2.0.0",
+    "postcss-hexrgba": "^0.2.1",
+    "postcss-import": "^9.1.0",
+    "postcss-loader": "^1.3.3",
+    "postcss-mixins": "^5.4.1",
+    "postcss-nested": "^1.0.1",
+    "postcss-simple-vars": "^3.1.0",
+    "prop-types": "^15.5.8",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-redux": "^5.0.4",
+    "react-router-dom": "^4.1.1",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0",
+    "script-loader": "^0.7.0",
+    "style-loader": "^0.16.1",
+    "sugarss": "^0.2.0",
+    "webpack": "^2.4.1"
+  }
+}
