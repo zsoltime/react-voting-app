@@ -121,7 +121,7 @@ describe('AddPoll', () => {
       expect(spy).toHaveBeenCalled();
     });
 
-    it('should not call onAddPoll prop there are less then two options', () => {
+    it('should not call onAddPoll prop with less then two options', () => {
       const invalidPollItem = {
         title: 'test',
         options: [
@@ -143,7 +143,7 @@ describe('AddPoll', () => {
       expect(spy).toNotHaveBeenCalled();
     });
 
-    it('should not call onAddPoll prop there is no title', () => {
+    it('should not call onAddPoll prop with empty title', () => {
       const options = [
         'item 1',
         'item 2',

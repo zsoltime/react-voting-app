@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Poll = ({ title }) => (
-  <li>{title}</li>
+  <li>
+    <h3>{title}</h3>
+  </li>
 );
 
 Poll.propTypes = {

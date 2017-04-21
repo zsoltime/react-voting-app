@@ -11,7 +11,7 @@ describe('Poll', () => {
 
   describe('render', () => {
     const title = 'Test title';
-    it('should render Poll', () => {
+    it('should display poll title', () => {
       const poll = shallow(<Poll title={title} />);
       const li = poll.find('li');
 
