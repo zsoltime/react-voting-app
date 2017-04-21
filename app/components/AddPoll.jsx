@@ -44,6 +44,7 @@ class AddPoll extends Component {
       const placeholder = `Choice ${i + 1}${i + 1 > 2 ? ' (optional)' : ''}`;
       return (
         <input
+          key={i}
           type="text"
           placeholder={placeholder}
           defaultValue=""

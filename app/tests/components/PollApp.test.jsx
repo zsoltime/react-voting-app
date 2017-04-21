@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import expect from 'expect';
+import uuid from 'node-uuid';
 
 import AddPoll from 'AddPoll';
 import PollApp from 'PollApp';
@@ -8,6 +9,10 @@ import PollList from 'PollList';
 import PollSearch from 'PollSearch';
 
 describe('PollApp', () => {
+  beforeEach(() => {
+    localStorage.removeItem('reactPolls');
+  });
+
   it('should exist', () => {
     expect(PollApp).toExist();
   });
@@ -36,14 +41,16 @@ describe('PollApp', () => {
     it('should add poll to state', () => {
       const pollApp = shallow(<PollApp />);
       const poll = {
+        id: uuid(),
         title: 'Test title',
         options: ['item 1', 'item 2'],
+        isFinished: false,
       };
 
-      expect(pollApp.state('polls').length).toBe(3);
+      expect(pollApp.state('polls').length).toBe(0);
 
       pollApp.instance().handleAddPoll(poll);
-      expect(pollApp.state('polls').length).toBe(4);
+      expect(pollApp.state('polls').length).toBe(1);
 
       const lastItem = pollApp.state('polls')[pollApp.state('polls').length - 1];
       expect(lastItem.title).toEqual(poll.title);

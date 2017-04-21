@@ -1,46 +1,24 @@
 import React, { Component } from 'react';
 import uuid from 'node-uuid';
 
-import PollList from 'PollList';
 import AddPoll from 'AddPoll';
+import { setPolls, getPolls, filterPolls } from 'PollAPI';
+import PollList from 'PollList';
 import PollSearch from 'PollSearch';
 
 class PollApp extends Component {
   constructor() {
     super();
     this.state = {
-      polls: [{
-        id: uuid(),
-        title: 'What Is Your Favourite Ice Cream?',
-        options: [
-          'Vanilla',
-          'Strawberry',
-          'Chocolate',
-        ],
-        isFinished: true,
-      }, {
-        id: uuid(),
-        title: 'Pepsi or Coke?',
-        options: [
-          'Pepsi',
-          'Coke',
-        ],
-        isFinished: false,
-      }, {
-        id: uuid(),
-        title: 'What\'s Your Favourite Brand of Coffee?',
-        options: [
-          'Lavazza',
-          'Costa Coffee',
-          'Caffe Nero',
-        ],
-        isFinished: false,
-      }],
+      polls: getPolls(),
       showFinished: false,
       searchText: '',
     };
     this.handleAddPoll = this.handleAddPoll.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+  }
+  componentDidUpdate() {
+    setPolls(this.state.polls);
   }
   handleAddPoll({ title, options }) {
     const polls = [
@@ -62,12 +40,9 @@ class PollApp extends Component {
     });
   }
   render() {
-    const filteredPolls = this.state.polls.filter(poll => (
-      poll.title.toLowerCase().indexOf(this.state.searchText) >= 0
-    ))
-    .filter(poll => (
-      poll.isFinished === this.state.showFinished || poll.isFinished === false
-    ));
+    const { polls, showFinished, searchText } = this.state;
+    const filteredPolls = filterPolls(polls, showFinished, searchText);
+
     return (
       <div>
         <h1>Poll App</h1>
