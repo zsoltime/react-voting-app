@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import expect from 'expect';
+import uuid from 'node-uuid';
 
 import PollList from 'PollList';
 import Poll from 'Poll';
@@ -12,14 +13,23 @@ describe('PollList', () => {
 
   describe('render', () => {
     const polls = [{
-      id: 1,
+      id: uuid(),
       title: 'Test Poll #1',
+      options: ['yes', 'no'],
+      isFinished: false,
+      createdAt: new Date().getTime(),
     }, {
-      id: 2,
+      id: uuid(),
       title: 'Test Poll #2',
+      options: ['yes', 'no'],
+      isFinished: false,
+      createdAt: new Date().getTime(),
     }, {
-      id: 3,
+      id: uuid(),
       title: 'Test Poll #3',
+      options: ['yes', 'no'],
+      isFinished: false,
+      createdAt: new Date().getTime(),
     }];
 
     it('should render the correct number of polls', () => {

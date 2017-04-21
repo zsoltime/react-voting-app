@@ -15,6 +15,7 @@ class PollApp extends Component {
       searchText: '',
     };
     this.handleAddPoll = this.handleAddPoll.bind(this);
+    this.handlePausePoll = this.handlePausePoll.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
   }
   componentDidUpdate() {
@@ -27,11 +28,26 @@ class PollApp extends Component {
         title,
         options,
         isFinished: false,
+        createdAt: new Date().getTime(),
+        finishAt: undefined,
       },
     ];
     this.setState({
       polls,
     });
+  }
+  handlePausePoll(id) {
+    const polls = this.state.polls.map((poll) => {
+      if (poll.id === id) {
+        return Object.assign({}, poll, {
+          isFinished: !poll.isFinished,
+          finishAt: !poll.isFinished ? new Date().getTime() : undefined,
+        });
+      }
+      return poll;
+    });
+
+    this.setState({ polls });
   }
   handleSearch({ searchText, showFinished }) {
     this.setState({
@@ -46,8 +62,8 @@ class PollApp extends Component {
     return (
       <div>
         <h1>Poll App</h1>
-        <PollList polls={filteredPolls} />
         <PollSearch onSearch={this.handleSearch} />
+        <PollList polls={filteredPolls} onPause={this.handlePausePoll} />
         <AddPoll onAddPoll={this.handleAddPoll} />
       </div>
     );
