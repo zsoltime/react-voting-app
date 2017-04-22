@@ -17,6 +17,18 @@ describe('PollApp', () => {
     expect(PollApp).toExist();
   });
 
+  const polls = [{
+    id: uuid(),
+    title: 'Test title 1',
+    options: ['yes', 'no'],
+    isFinished: false,
+  }, {
+    id: uuid(),
+    title: 'Test title 2',
+    options: ['yes', 'no'],
+    isFinished: false,
+  }];
+
   describe('render', () => {
     it('should render PollList component', () => {
       const pollApp = shallow(<PollApp />);
@@ -40,12 +52,7 @@ describe('PollApp', () => {
   describe('handleAddPoll', () => {
     it('should add poll to state', () => {
       const pollApp = shallow(<PollApp />);
-      const poll = {
-        id: uuid(),
-        title: 'Test title',
-        options: ['item 1', 'item 2'],
-        isFinished: false,
-      };
+      const poll = polls[0];
 
       expect(pollApp.state('polls').length).toBe(0);
 
@@ -72,6 +79,39 @@ describe('PollApp', () => {
       pollApp.instance().handleSearch(search);
       expect(pollApp.state('showFinished')).toBe(search.showFinished);
       expect(pollApp.state('searchText')).toBe(search.searchText);
+    });
+  });
+
+  describe('handleDeletePoll', () => {
+    it('should remove poll from state', () => {
+      const pollApp = shallow(<PollApp />);
+
+      pollApp.setState({ polls });
+
+      expect(pollApp.state('showFinished')).toBe(false);
+      expect(pollApp.state('searchText')).toBe('');
+      expect(pollApp.state('polls').length).toBe(polls.length);
+
+      pollApp.instance().handleDeletePoll(polls[0].id);
+      expect(pollApp.state('polls').length).toBe(polls.length - 1);
+      expect(pollApp.state('polls')[0]).toEqual(polls[1]);
+    });
+  });
+
+  describe('handlePausePoll', () => {
+    it('should toggle isFinished status', () => {
+      const pollApp = shallow(<PollApp />);
+
+      pollApp.setState({ polls });
+
+      expect(pollApp.state('showFinished')).toBe(false);
+      expect(pollApp.state('searchText')).toBe('');
+      expect(pollApp.state('polls').length).toBe(polls.length);
+      expect(pollApp.state('polls')[0]).toEqual(polls[0]);
+
+      pollApp.instance().handlePausePoll(polls[0].id);
+      expect(pollApp.state('polls')[0].isFinished).toBe(!polls[0].isFinished);
+      expect(pollApp.state('polls')[1].isFinished).toBe(polls[1].isFinished);
     });
   });
 });

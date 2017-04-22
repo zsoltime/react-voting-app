@@ -33,7 +33,9 @@ describe('PollList', () => {
     }];
 
     it('should render the correct number of polls', () => {
-      const pollList = shallow(<PollList polls={polls} />);
+      const pollList = shallow(
+        <PollList polls={polls} onPause={f => f} onDelete={f => f} />
+      );
 
       expect(pollList.find(Poll).length).toBe(3);
     });

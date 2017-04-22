@@ -15,6 +15,7 @@ class PollApp extends Component {
       searchText: '',
     };
     this.handleAddPoll = this.handleAddPoll.bind(this);
+    this.handleDeletePoll = this.handleDeletePoll.bind(this);
     this.handlePausePoll = this.handlePausePoll.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
   }
@@ -35,6 +36,11 @@ class PollApp extends Component {
     this.setState({
       polls,
     });
+  }
+  handleDeletePoll(id) {
+    const polls = this.state.polls.filter(poll => poll.id !== id);
+
+    this.setState({ polls });
   }
   handlePausePoll(id) {
     const polls = this.state.polls.map((poll) => {
@@ -63,7 +69,11 @@ class PollApp extends Component {
       <div>
         <h1>Poll App</h1>
         <PollSearch onSearch={this.handleSearch} />
-        <PollList polls={filteredPolls} onPause={this.handlePausePoll} />
+        <PollList
+          polls={filteredPolls}
+          onPause={this.handlePausePoll}
+          onDelete={this.handleDeletePoll}
+        />
         <AddPoll onAddPoll={this.handleAddPoll} />
       </div>
     );
